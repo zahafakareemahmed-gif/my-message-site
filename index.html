@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>رسالة ليك</title>
+  <style>
+    *{box-sizing:border-box}
+    body{
+      margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+      font-family:Tahoma,Arial,sans-serif;
+      background:linear-gradient(135deg,#f7f7f8,#e7e8ec);
+      color:#252733; overflow:hidden;
+    }
+    .card{
+      width:min(92vw,560px); padding:34px 26px 28px; text-align:center;
+      background:rgba(255,255,255,.88); border:1px solid #e1e2e6;
+      border-radius:28px; box-shadow:0 20px 60px rgba(40,42,50,.13);
+      backdrop-filter:blur(8px);
+    }
+    .logo{
+      width:120px;height:120px;object-fit:contain;border-radius:50%;
+      margin:0 auto 18px; display:block; opacity:.82;
+    }
+    h1{margin:0 0 12px;font-size:30px}
+    p{line-height:1.9;font-size:17px;margin:10px 0;color:#555b68}
+    .message{
+      margin:22px 0;padding:20px;border-radius:18px;background:#f1f2f5;
+      font-size:18px;line-height:2;color:#303440;
+    }
+    button{
+      border:0;border-radius:999px;padding:13px 24px;font-size:16px;
+      cursor:pointer;background:#343842;color:white;
+    }
+    button:active{transform:scale(.98)}
+    audio{width:100%;margin-top:18px}
+    .note{font-size:13px;color:#858a96;margin-top:14px}
+  </style>
+</head>
+<body>
+  <main class="card">
+    <img class="logo" src="logo.png" alt="">
+    <h1>رسالة ليك</h1>
+    <p>كلمة بسيطة مخصوص ليك 👌</p>
+
+    <div class="message">
+      وجودك في حياة اللي حواليك له قيمة كبيرة،
+      وخليك دايمًا فاكر إنك تستاهل التقدير والاحترام.
+      كمّل طريقك، وخليك على طبيعتك.
+    </div>
+
+    <button id="play">▶ تشغيل الأغنية</button>
+    <audio id="song" controls preload="metadata">
+      <source src="song.mp3" type="audio/mpeg">
+      متصفحك لا يدعم تشغيل الصوت.
+    </audio>
+
+    <div class="note">ضع ملف الأغنية باسم <b>song.mp3</b> بجانب ملف الصفحة.</div>
+  </main>
+
+  <script>
+    const audio = document.getElementById('song');
+    const btn = document.getElementById('play');
+    btn.addEventListener('click', async () => {
+      if (audio.paused) {
+        try { await audio.play(); btn.textContent='⏸ إيقاف الأغنية'; }
+        catch(e) { alert('أضف ملف song.mp3 بجانب الصفحة أولاً.'); }
+      } else {
+        audio.pause(); btn.textContent='▶ تشغيل الأغنية';
+      }
+    });
+    audio.addEventListener('play',()=>btn.textContent='⏸ إيقاف الأغنية');
+    audio.addEventListener('pause',()=>btn.textContent='▶ تشغيل الأغنية');
+  </script>
+</body>
+</html>
